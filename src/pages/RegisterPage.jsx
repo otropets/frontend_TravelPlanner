@@ -17,6 +17,7 @@ function RegisterPage() {
             const data = await register(username, email, password, firstName, lastName);
             if (data.token) {
                 localStorage.setItem("token", data.token);
+                localStorage.setItem("username", data.username);
                 navigate("/trips");
             } else {
                 setError(data.message || "Registration failed");
