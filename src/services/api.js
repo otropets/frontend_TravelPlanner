@@ -1,5 +1,5 @@
-//const BASE_URL = "http://localhost:8080";
-const BASE_URL = "https://travelplanner-production-d32c.up.railway.app";
+const BASE_URL = "http://localhost:8080";
+//const BASE_URL = "https://travelplanner-production-d32c.up.railway.app";
 
 // auth
 
@@ -184,4 +184,28 @@ export const changeRole = async (token, participantId, role) => {
         body: JSON.stringify({ role: role })
     });
     return response.json();
+};
+
+
+export const forgotPassword = async (email) => {
+    await fetch(`${BASE_URL}/api/auth/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+    });
+};
+
+export const resetPassword = async (token, password) => {
+    const response = await fetch(`${BASE_URL}/api/auth/reset-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, password })
+    });
+    console.log("response status:", response.status);
+    const text = await response.text();
+    console.log("response body:", text);
+    
+    if (!response.ok) {
+        throw new Error(text || "Something went wrong");
+    }
 };

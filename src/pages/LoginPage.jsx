@@ -35,6 +35,7 @@ function LoginPage() {
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit" className="btn-primary">Login</button>
                 <p>Don't have an account? <a href="/register">Register</a></p>
+                <p>Forgot your password? <a href="/forgot-password">Reset it</a></p>
             </form>
         </div>
     );
